@@ -49,31 +49,35 @@ buttons.forEach(button => {
 
         if (button.id === "clear") {
             currentExpression = "";
-            firstNum = null;
+            currentResult = null;
             operator = null;
-            waitingForSecond = false;
             display.value = "";
         } 
-        else if (button.id === "equals") {
-            if (firstNum !== null && operator && waitingForSecond) {
-                
+        else if (ops.includes(value)) {
+            if (currentExpression === "" && currentResult === null) return;
+
+
+            if (operator !== null && currentResult !== null) {
                 const parts = currentExpression.split(` ${operator} `);
                 const secondNum = parseFloat(parts[1]);
-                const result = operate(firstNum, operator, secondNum);
-                display.value = currentExpression + " = " + result;
-                currentExpression = "" + result;
-                firstNum = result;
-                operator = null;
-                waitingForSecond = false;
-            }
-        } 
-        else if (ops.includes(value)) {
-            if (!waitingForSecond) {
-                operator = value;
-                firstNum = parseFloat(currentExpression);
-                waitingForSecond = true;
+                currentResult = operate(currentResult, operator, secondNum);
+                currentExpression = currentResult + ` ${value} `;
+            } else {
+                currentResult = parseFloat(currentExpression);
                 currentExpression += ` ${value} `;
-                display.value = currentExpression;
+            }
+
+            operator = value;
+            display.value = currentExpression;
+        } 
+        else if (button.id === "equals") {
+            if (operator !== null && currentResult !== null) {
+                const parts = currentExpression.split(` ${operator} `);
+                const secondNum = parseFloat(parts[1]);
+                currentResult = operate(currentResult, operator, secondNum);
+                display.value = currentExpression + " = " + currentResult;
+                currentExpression = "" + currentResult;
+                operator = null;
             }
         } 
         else {
