@@ -68,7 +68,8 @@ button {
 }
 
 .calculator-container {
-  background-color: darkgray;
+  background-image: url(./images/calcback.jpg);
+  background-size: cover;
   padding: 15px;
   border: 2px black
 }
