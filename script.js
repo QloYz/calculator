@@ -37,7 +37,7 @@ function operate(x, op, y) {
     else if (op == 'x') {
         return multiply(x, y)
     }
-    else if (op == '/') {
+    else if (op == '÷') {
         return divide(x, y)
     }
 
