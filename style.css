@@ -22,7 +22,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0a49e8;
+    background-image: url('./images/background1.jpg')
 }
 
 .calculator-container {
