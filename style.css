@@ -68,7 +68,7 @@ button {
 }
 
 .calculator-container {
-  background-color: aqua;
-  padding: 10px;
+  background-color: darkgray;
+  padding: 15px;
   border: 2px black
 }
